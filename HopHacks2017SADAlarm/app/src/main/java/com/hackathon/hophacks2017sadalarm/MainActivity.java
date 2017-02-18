@@ -1,12 +1,13 @@
 package com.hackathon.hophacks2017sadalarm;
 
-import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TimePicker;
-import android.widget.TextView;
+import android.support.v4.app.DialogFragment;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
-public class MainActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
+public class MainActivity extends AppCompatActivity {
 
     public AlarmReceiver alarm = new AlarmReceiver();
     public static int hour, minute;
@@ -17,18 +18,33 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         setContentView(R.layout.activity_main);
     }
 
+    /*
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    */
 
     @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minuteOfHour)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
-        hour = view.getHour();
-        minute = view.getMinute();
-        alarm.setAlarm(this);
+        //noinspection SimplifiableIfStatement
+        //if (id == R.id.action_settings) {
+        //   return true;
+        //}
 
-        TextView tv1 = (TextView) findViewById(R.id.alarmTime);
-        tv1.setText("Hour: " + hour + " Minute: " + minute);
+        return super.onOptionsItemSelected(item);
+    }
 
+    public void showTimePickerDialog(View v) {
+        DialogFragment newFragment = new TimePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "timePicker");
     }
 
 
