@@ -40,6 +40,37 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
         Intent intent = new Intent(context, AlarmReceiver.class);
         alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
         Calendar calendar = Calendar.getInstance();
+        /*
+        Convert data here from input using analog clock in UI
+        to calendar inputtable data, then use these calendar functions
+        to set a permanent alarm
+
+        ex.
+
+        calendar.set(Calendar.HOUR_OF_DAY, 8);
+        calendar.set(Calendar.MINUTE, 30);
+
+        Sets alarm for 8:30 am
+         */
+
+        //Set alarm to repeat at the same time everyday
+        manager.setInexactRepeating(
+                AlarmManager.RTC_WAKEUP,
+                calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY,
+                alarmIntent
+        );
+
+        //Enable receiver to automatically restart the alarm whenever the
+        //phone reboots
+        ComponentName receiver = new ComponentName(context, BootReceiver.class);
+        PackageManager pm = context.getPackageManager();
+
+        pm.setComponentEnabledSetting(
+                receiver,
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                PackageManager.DONT_KILL_APP
+        );
 
     }
 
