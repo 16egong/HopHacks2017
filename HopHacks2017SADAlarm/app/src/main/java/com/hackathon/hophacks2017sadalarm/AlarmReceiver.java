@@ -53,6 +53,8 @@ public class AlarmReceiver extends WakefulBroadcastReceiver
 
         Sets alarm for 8:30 am
          */
+        calendar.set(Calendar.HOUR_OF_DAY, MainActivity.hour);
+        calendar.set(Calendar.MINUTE, MainActivity.minute);
 
         //Set alarm to repeat at the same time everyday
         manager.setInexactRepeating(

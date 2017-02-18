@@ -8,6 +8,7 @@ import android.widget.TimePicker;
 public class MainActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
     AlarmReceiver alarm = new AlarmReceiver();
+    public static int hour, minute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +18,11 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
 
 
     @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute)
+    public void onTimeSet(TimePicker view, int hourOfDay, int minuteOfHour)
     {
+
+        hour = view.getHour();
+        minute = view.getMinute();
 
     }
 
