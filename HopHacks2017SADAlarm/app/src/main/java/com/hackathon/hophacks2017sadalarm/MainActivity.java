@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         tp.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker view, int h, int m) {
+                hour = view.getHour();
+                minute = view.getMinute();
                 alarmTime.setText("Hour: " + hour + " Minute: " + minute);
             }
         }
