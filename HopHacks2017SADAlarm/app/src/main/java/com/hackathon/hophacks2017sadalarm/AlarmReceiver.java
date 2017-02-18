@@ -66,6 +66,7 @@ public class AlarmReceiver extends WakefulBroadcastReceiver
 
         //Enable receiver to automatically restart the alarm whenever the
         //phone reboots
+        /*
         ComponentName receiver = new ComponentName(context, BootReceiver.class);
         PackageManager pm = context.getPackageManager();
 
@@ -74,7 +75,7 @@ public class AlarmReceiver extends WakefulBroadcastReceiver
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP
         );
-
+        */
     }
 
     //Cancels the alarm
@@ -89,6 +90,7 @@ public class AlarmReceiver extends WakefulBroadcastReceiver
 
         //Disable boot receiver so it doesn't automatically reset alarm
         //when phone reboots
+        /*
         ComponentName receiver = new ComponentName(context, BootReceiver.class);
         PackageManager pm = context.getPackageManager();
 
@@ -97,6 +99,7 @@ public class AlarmReceiver extends WakefulBroadcastReceiver
                 PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                 PackageManager.DONT_KILL_APP
         );
+        */
 
     }
 
