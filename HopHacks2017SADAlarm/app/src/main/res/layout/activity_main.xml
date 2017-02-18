@@ -10,11 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.hackathon.hophacks2017sadalarm.MainActivity">
 
-    <TimePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/timePicker" />
-
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
@@ -34,5 +29,12 @@
         android:id="@+id/setButton"
         tools:text="Set Alarm"
         android:onClick="showTimePickerDialog" />
+
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timePicker"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

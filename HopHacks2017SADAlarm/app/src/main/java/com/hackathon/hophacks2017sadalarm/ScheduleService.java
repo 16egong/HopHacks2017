@@ -22,7 +22,12 @@ public class ScheduleService extends IntentService
     public void onHandleIntent(Intent intent)
     {
 
+        MainActivity.b = 1;
+        AlarmReceiver.completeWakefulIntent(intent);
+
     }
+
+
 
 
 }

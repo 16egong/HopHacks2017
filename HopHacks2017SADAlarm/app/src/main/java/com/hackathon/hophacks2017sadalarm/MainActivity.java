@@ -10,6 +10,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
 
     public AlarmReceiver alarm = new AlarmReceiver();
     public static int hour, minute;
+    public static int b = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,13 +19,14 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
 
         TimePicker tp = (TimePicker) findViewById(R.id.timePicker);
         final TextView alarmTime = (TextView) findViewById(R.id.alarmTime);
+        alarmTime.setText("Hour: 0 Minute: 0 Val B: " + b);
         tp.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker view, int h, int m) {
                 alarm.cancelAlarm(MainActivity.this);
                 hour = view.getHour();
                 minute = view.getMinute();
-                alarmTime.setText("Hour: " + hour + " Minute: " + minute);
+                alarmTime.setText("Hour: " + hour + " Minute: " + minute + " Val B: " + b);
                 alarm.setAlarm(MainActivity.this);
             }
         }
