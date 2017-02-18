@@ -30,8 +30,7 @@ public class RingtonePlayingService extends Service {
     private int startId;
 
     @Override
-    public IBinder onBind(Intent intent)
-    {
+    public IBinder onBind(Intent intent) {
         Log.e("MyActivity", "In the Richard service");
         return null;
     }
@@ -39,8 +38,7 @@ public class RingtonePlayingService extends Service {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId)
-    {
+    public int onStartCommand(Intent intent, int flags, int startId) {
 
 
         final NotificationManager mNM = (NotificationManager)
@@ -49,10 +47,10 @@ public class RingtonePlayingService extends Service {
         Intent intent1 = new Intent(this.getApplicationContext(), MainActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent1, 0);
 
-        Notification mNotify  = new Notification.Builder(this)
+        Notification mNotify = new Notification.Builder(this)
                 .setContentTitle("Richard Dawkins is talking" + "!")
                 .setContentText("Click me!")
-                .setSmallIcon(R.drawable.ic_action_call)
+                //.setSmallIcon(R.drawable.)
                 .setContentIntent(pIntent)
                 .setAutoCancel(true)
                 .build();
@@ -76,9 +74,9 @@ public class RingtonePlayingService extends Service {
 
         // get richard's thing
         String richard_id = intent.getExtras().getString("quote id");
-        Log.e("Service: richard id is " , richard_id);
+        Log.e("Service: richard id is ", richard_id);
 
-        if(!this.isRunning && startId == 1) {
+        if (!this.isRunning && startId == 1) {
             Log.e("if there was not sound ", " and you want start");
 
             assert richard_id != null;
@@ -93,63 +91,44 @@ public class RingtonePlayingService extends Service {
 
                 if (random_number == 1) {
                     mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_1);
-                }
-                else if (random_number == 2) {
+                } else if (random_number == 2) {
                     mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_2);
-                }
-                else if (random_number == 3) {
+                } else if (random_number == 3) {
                     mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_3);
-                }
-                else if (random_number == 4) {
+                } else if (random_number == 4) {
                     mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_4);
-                }
-                else if (random_number == 5) {
+                } else if (random_number == 5) {
                     mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_5);
-                }
-                else if (random_number == 6) {
+                } else if (random_number == 6) {
                     mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_6);
-                }
-                else if (random_number == 7) {
+                } else if (random_number == 7) {
                     mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_7);
-                }
-                else if (random_number == 8) {
+                } else if (random_number == 8) {
                     mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_8);
-                }
-                else if (random_number == 9) {
+                } else if (random_number == 9) {
                     mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_9);
-                }
-                else {
+                } else {
                     mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_1);
                 }
-            }
-            else if (richard_id.equals("1")) {
+            } else if (richard_id.equals("1")) {
                 mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_1);
-            }
-            else if (richard_id.equals("2")) {
+            } else if (richard_id.equals("2")) {
                 mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_2);
-            }
-            else if (richard_id.equals("3")) {
+            } else if (richard_id.equals("3")) {
                 mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_3);
-            }
-            else if (richard_id.equals("4")) {
+            } else if (richard_id.equals("4")) {
                 mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_4);
-            }
-            else if (richard_id.equals("5")) {
+            } else if (richard_id.equals("5")) {
                 mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_5);
-            }
-            else if (richard_id.equals("6")) {
+            } else if (richard_id.equals("6")) {
                 mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_6);
-            }
-            else if (richard_id.equals("7")) {
+            } else if (richard_id.equals("7")) {
                 mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_7);
-            }
-            else if (richard_id.equals("8")) {
+            } else if (richard_id.equals("8")) {
                 mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_8);
-            }
-            else if (richard_id.equals("9")) {
+            } else if (richard_id.equals("9")) {
                 mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_9);
-            }
-            else {
+            } else {
                 mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_1);
             }
 
@@ -161,23 +140,19 @@ public class RingtonePlayingService extends Service {
             this.isRunning = true;
             this.startId = 0;
 
-        }
-        else if (!this.isRunning && startId == 0){
+        } else if (!this.isRunning && startId == 0) {
             Log.e("if there was not sound ", " and you want end");
 
             this.isRunning = false;
             this.startId = 0;
 
-        }
-
-        else if (this.isRunning && startId == 1){
+        } else if (this.isRunning && startId == 1) {
             Log.e("if there is sound ", " and you want start");
 
             this.isRunning = true;
             this.startId = 0;
 
-        }
-        else {
+        } else {
             Log.e("if there is sound ", " and you want end");
 
             mMediaPlayer.stop();
@@ -194,7 +169,6 @@ public class RingtonePlayingService extends Service {
     }
 
 
-
     @Override
     public void onDestroy() {
         Log.e("JSLog", "on destroy called");
@@ -202,5 +176,6 @@ public class RingtonePlayingService extends Service {
 
         this.isRunning = false;
     }
+}
 
 
