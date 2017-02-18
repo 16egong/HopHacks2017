@@ -1,13 +1,12 @@
 package com.hackathon.hophacks2017sadalarm;
 
+import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
+import android.widget.TimePicker;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
     public AlarmReceiver alarm = new AlarmReceiver();
     public static int hour, minute;
@@ -18,33 +17,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-    */
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void onTimeSet(TimePicker view, int hourOfDay, int minuteOfHour)
+    {
 
-        //noinspection SimplifiableIfStatement
-        //if (id == R.id.action_settings) {
-        //   return true;
-        //}
+        hour = view.getHour();
+        minute = view.getMinute();
+        alarm.setAlarm(this);
 
-        return super.onOptionsItemSelected(item);
-    }
+        TextView tv1 = (TextView) findViewById(R.id.alarmTime);
+        tv1.setText("Hour: " + hour + " Minute: " + minute);
 
-    public void showTimePickerDialog(View v) {
-        DialogFragment newFragment = new TimePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "timePicker");
     }
 
 
