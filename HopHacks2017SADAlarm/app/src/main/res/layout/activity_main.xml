@@ -15,14 +15,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/timePicker" />
 
-    <EditText
+    <TextView
+        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textNoSuggestions|textPersonName"
-        android:text="Name"
-        android:ems="10"
+        android:id="@+id/alarmTime"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="82dp"
-        android:id="@+id/alarmTime" />
+        android:layout_marginBottom="103dp" />
+
 </RelativeLayout>
