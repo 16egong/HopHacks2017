@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">HopHacks2017SADAlarm</string>
+    <string name="action_settings">Settings</string>
+    <string name="init_text">HopHacks2017SADAlarm</string>
+    <string name="pick_time">Pick Time</string>
+
 </resources>
