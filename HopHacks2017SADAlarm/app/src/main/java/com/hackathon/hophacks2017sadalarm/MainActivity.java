@@ -4,6 +4,7 @@ import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TimePicker;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
@@ -23,6 +24,10 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
 
         hour = view.getHour();
         minute = view.getMinute();
+        alarm.setAlarm(this);
+
+        TextView tv1 = (TextView) findViewById(R.id.alarmTime);
+        tv1.setText("Hour: " + hour + " Minute: " + minute);
 
     }
 
