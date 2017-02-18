@@ -35,8 +35,11 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
     //Sets and saves the alarm
     public void setAlarm(Context context)
     {
-
-
+        //Create services necessary to create the alarm
+        manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(context, AlarmReceiver.class);
+        alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        Calendar calendar = Calendar.getInstance();
 
     }
 
