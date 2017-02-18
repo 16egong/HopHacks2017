@@ -19,7 +19,7 @@ public class BootReceiver extends BroadcastReceiver
     {
         if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED"))
         {
-            alarm.setAlarm(context);
+            alarm.setAlarm(context, MainActivity.hour, MainActivity.minute);
         }
     }
 
