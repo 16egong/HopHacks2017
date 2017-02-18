@@ -6,7 +6,9 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
 import android.support.v4.content.WakefulBroadcastReceiver;
+import android.os.Bundle;
 
 import java.util.Calendar;
 
@@ -25,11 +27,8 @@ public class AlarmReceiver extends WakefulBroadcastReceiver
     public void onReceive(Context context, Intent intent)
     {
 
-        //Intent to hold data to be delivered to the service
-        Intent service = new Intent(context, ScheduleService.class);
-
-        //Begin the service
-        startWakefulService(context, service);
+        MediaPlayer mp = MediaPlayer.create(context, R.raw.foghorn);
+        mp.start();
 
     }
 
