@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.TimePicker;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
+public class MainActivity extends AppCompatActivity {
 
     public AlarmReceiver alarm = new AlarmReceiver();
     public static int hour, minute;
@@ -27,24 +27,10 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                 hour = view.getHour();
                 minute = view.getMinute();
                 alarmTime.setText("Hour: " + hour + " Minute: " + minute + " Val B: " + b);
-                alarm.setAlarm(MainActivity.this);
+                alarm.setAlarm(MainActivity.this, hour, minute);
             }
         }
         );
-    }
-
-
-    @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minuteOfHour)
-    {
-
-        hour = view.getHour();
-        minute = view.getMinute();
-        alarm.setAlarm(this);
-
-        TextView tv1 = (TextView) findViewById(R.id.alarmTime);
-        tv1.setText("Hour: " + hour + " Minute: " + minute);
-
     }
 
 

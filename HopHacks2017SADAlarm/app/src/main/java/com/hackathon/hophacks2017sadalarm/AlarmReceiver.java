@@ -34,7 +34,7 @@ public class AlarmReceiver extends WakefulBroadcastReceiver
     }
 
     //Sets and saves the alarm
-    public void setAlarm(Context context)
+    public void setAlarm(Context context, int hour, int minute)
     {
         //Create services necessary to create the alarm
         manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
@@ -53,16 +53,18 @@ public class AlarmReceiver extends WakefulBroadcastReceiver
 
         Sets alarm for 8:30 am
          */
-        calendar.set(Calendar.HOUR_OF_DAY, MainActivity.hour);
-        calendar.set(Calendar.MINUTE, MainActivity.minute);
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
 
         //Set alarm to repeat at the same time everyday
+        /*
         manager.setInexactRepeating(
                 AlarmManager.RTC_WAKEUP,
                 calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY,
                 alarmIntent
         );
+        */
 
         //Enable receiver to automatically restart the alarm whenever the
         //phone reboots
