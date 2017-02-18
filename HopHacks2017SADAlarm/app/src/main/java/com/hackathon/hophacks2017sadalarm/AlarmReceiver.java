@@ -16,10 +16,14 @@ import java.util.Calendar;
 
 public class AlarmReceiver extends WakefulBroadcastReceiver {
 
+    private AlarmManager manager; //Needed for access to System Alarm Services
+    private PendingIntent alarmIntent; //Triggered when alarm fires
+
+    //Begin the alarm service when called
     @Override
     public void onReceive(Context context, Intent intent)
     {
-
+        
     }
 
 }
