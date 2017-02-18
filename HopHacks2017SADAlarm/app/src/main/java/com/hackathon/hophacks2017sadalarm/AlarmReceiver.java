@@ -14,7 +14,8 @@ import java.util.Calendar;
  * Created by achee on 2/17/2017.
  */
 
-public class AlarmReceiver extends WakefulBroadcastReceiver {
+public class AlarmReceiver extends WakefulBroadcastReceiver
+{
 
     private AlarmManager manager; //Needed for access to System Alarm Services
     private PendingIntent alarmIntent; //Triggered when alarm fires
@@ -69,6 +70,29 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
         pm.setComponentEnabledSetting(
                 receiver,
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                PackageManager.DONT_KILL_APP
+        );
+
+    }
+
+    //Cancels the alarm
+    public void cancelAlarm(Context context)
+    {
+
+        //If alarm has been set, cancel it
+        if (manager != null)
+        {
+            manager.cancel(alarmIntent);
+        }
+
+        //Disable boot receiver so it doesn't automatically reset alarm
+        //when phone reboots
+        ComponentName receiver = new ComponentName(context, BootReceiver.class);
+        PackageManager pm = context.getPackageManager();
+
+        pm.setComponentEnabledSetting(
+                receiver,
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                 PackageManager.DONT_KILL_APP
         );
 
