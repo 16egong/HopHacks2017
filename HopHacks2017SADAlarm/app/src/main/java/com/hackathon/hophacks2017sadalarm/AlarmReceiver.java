@@ -23,7 +23,21 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent)
     {
-        
+
+        //Intent to hold data to be delivered to the service
+        Intent service = new Intent(context, ScheduleService.class);
+
+        //Begin the service
+        startWakefulService(context, service);
+
+    }
+
+    //Sets and saves the alarm
+    public void setAlarm(Context context)
+    {
+
+
+
     }
 
 }
