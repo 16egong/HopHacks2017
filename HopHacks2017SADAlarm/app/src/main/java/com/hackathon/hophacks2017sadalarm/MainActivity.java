@@ -3,6 +3,8 @@ package com.hackathon.hophacks2017sadalarm;
 import android.annotation.TargetApi;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -16,6 +18,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -38,6 +43,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private Context context;
     Spinner spinner;
     int richard_quote = 0;
+
+    //Bluetooth Instance Data
+    private static final int REQUEST_SELECT_DEVICE = 1;
+    private static final int REQUEST_ENABLE_BT = 2;
+    private static final int UART_PROFILE_READY = 10;
+    public static final String TAG = "nRFUART";
+    private static final int UART_PROFILE_CONNECTED = 20;
+    private static final int UART_PROFILE_DISCONNECTED = 21;
+    private static final int STATE_OFF = 10;
+
+    TextView mRemoteRssiVal;
+    RadioGroup mRg;
+    private int mState = UART_PROFILE_DISCONNECTED;
+    private UartService mService = null;
+    private BluetoothDevice mDevice = null;
+    private BluetoothAdapter mBtAdapter = null;
+    private ListView messageListView;
+    private ArrayAdapter<String> listAdapter;
+    private Button btnConnectDisconnect,btnSend;
+    private EditText edtMessage;
 
 
     @TargetApi(Build.VERSION_CODES.M)
