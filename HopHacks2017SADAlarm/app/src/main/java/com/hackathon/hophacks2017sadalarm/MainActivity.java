@@ -85,6 +85,21 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.content_main);
 
 
+        mBtAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (mBtAdapter == null) {
+            Toast.makeText(this, "Bluetooth is not available", Toast.LENGTH_LONG).show();
+            finish();
+            return;
+        }
+        messageListView = (ListView) findViewById(R.id.listMessage);
+        listAdapter = new ArrayAdapter<String>(this, R.layout.message_detail);
+        messageListView.setAdapter(listAdapter);
+        messageListView.setDivider(null);
+        btnConnectDisconnect=(Button) findViewById(R.id.btn_select);
+        btnSend=(Button) findViewById(R.id.sendButton);
+        edtMessage = (EditText) findViewById(R.id.sendText);
+        service_init();
+
         btnConnectDisconnect=(Button) findViewById(R.id.pair);
         this.context = this;
 
