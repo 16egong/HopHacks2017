@@ -225,6 +225,7 @@ void serialEvent() {
 //      Serial.println(inputString);      
 //    }
 
+  }
 }
 
 void stringMatches() {
