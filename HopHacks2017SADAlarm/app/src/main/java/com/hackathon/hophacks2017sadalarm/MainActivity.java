@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
         Button start_alarm = (Button) findViewById(R.id.start_alarm);
+       // start_alarm.setAlpha(0.0f);
         start_alarm.setOnClickListener(new View.OnClickListener() {
             @TargetApi(Build.VERSION_CODES.M)
 
@@ -132,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pending_intent);
 
-                setAlarmText("Alarm set to " + hour_string + ":" + minute_string);
+                setAlarmText("Alarm Set");
             }
 
         });
