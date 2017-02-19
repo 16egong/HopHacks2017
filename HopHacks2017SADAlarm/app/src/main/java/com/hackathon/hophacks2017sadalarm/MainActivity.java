@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.content_main);
 
 
         this.context = this;
@@ -61,19 +61,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         final Calendar calendar = Calendar.getInstance();
         //calendar.add(Calendar.SECOND, 3);
         alarmTimePicker = (TimePicker) findViewById(R.id.alarmTimePicker);
-
-        //spinner creation
-        Spinner spinner = (Spinner) findViewById(R.id.richard_spinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.dawkins_sounds, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
-
-        // Spinner click listener
-        spinner.setOnItemSelectedListener(this);
 
 
         Button start_alarm = (Button) findViewById(R.id.start_alarm);

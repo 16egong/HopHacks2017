@@ -50,7 +50,7 @@ public class RingtonePlayingService extends Service {
         Notification mNotify = new Notification.Builder(this)
                 .setContentTitle("Richard Dawkins is talking" + "!")
                 .setContentText("Click me!")
-                //.setSmallIcon(R.drawable.)
+                .setSmallIcon(R.drawable.ic_action_call)
                 .setContentIntent(pIntent)
                 .setAutoCancel(true)
                 .build();
@@ -80,58 +80,9 @@ public class RingtonePlayingService extends Service {
             Log.e("if there was not sound ", " and you want start");
 
             assert richard_id != null;
-            if (richard_id.equals("0")) {
 
-                int min = 1;
-                int max = 9;
 
-                Random r = new Random();
-                int random_number = r.nextInt(max - min + 1) + min;
-                Log.e("random number is ", String.valueOf(random_number));
-
-                if (random_number == 1) {
-                    mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_1);
-                } else if (random_number == 2) {
-                    mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_2);
-                } else if (random_number == 3) {
-                    mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_3);
-                } else if (random_number == 4) {
-                    mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_4);
-                } else if (random_number == 5) {
-                    mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_5);
-                } else if (random_number == 6) {
-                    mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_6);
-                } else if (random_number == 7) {
-                    mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_7);
-                } else if (random_number == 8) {
-                    mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_8);
-                } else if (random_number == 9) {
-                    mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_9);
-                } else {
-                    mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_1);
-                }
-            } else if (richard_id.equals("1")) {
-                mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_1);
-            } else if (richard_id.equals("2")) {
-                mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_2);
-            } else if (richard_id.equals("3")) {
-                mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_3);
-            } else if (richard_id.equals("4")) {
-                mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_4);
-            } else if (richard_id.equals("5")) {
-                mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_5);
-            } else if (richard_id.equals("6")) {
-                mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_6);
-            } else if (richard_id.equals("7")) {
-                mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_7);
-            } else if (richard_id.equals("8")) {
-                mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_8);
-            } else if (richard_id.equals("9")) {
-                mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_9);
-            } else {
-                mMediaPlayer = MediaPlayer.create(this, R.raw.richard_dawkins_1);
-            }
-
+                    mMediaPlayer = MediaPlayer.create(this, R.raw.foghorn);
 
             mMediaPlayer.start();
 
