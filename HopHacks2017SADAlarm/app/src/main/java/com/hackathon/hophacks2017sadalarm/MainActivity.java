@@ -69,13 +69,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     TextView mRemoteRssiVal;
     RadioGroup mRg;
     private int mState = UART_PROFILE_DISCONNECTED;
-    private UartService mService = null;
+    public static UartService mService = null;
     private BluetoothDevice mDevice = null;
     private BluetoothAdapter mBtAdapter = null;
-    private ListView messageListView;
-    private ArrayAdapter<String> listAdapter;
+    public static ListView messageListView;
+    public static ArrayAdapter<String> listAdapter;
     private Button btnConnectDisconnect,btnSend;
-    private EditText edtMessage;
+    public static EditText edtMessage;
 
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.content_main);
 
 
+        btnConnectDisconnect=(Button) findViewById(R.id.pair);
         this.context = this;
 
         //alarm = new AlarmReceiver();
@@ -99,6 +100,34 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         final Calendar calendar = Calendar.getInstance();
         //calendar.add(Calendar.SECOND, 3);
         alarmTimePicker = (TimePicker) findViewById(R.id.alarmTimePicker);
+
+
+        btnConnectDisconnect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!mBtAdapter.isEnabled()) {
+                    Log.i(TAG, "onClick - BT not enabled yet");
+                    Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                    startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
+                }
+                else {
+                    if (btnConnectDisconnect.getText().equals("Connect")){
+
+                        //Connect button pressed, open DeviceListActivity class, with popup windows that scan for devices
+
+                        Intent newIntent = new Intent(MainActivity.this, DeviceListActivity.class);
+                        startActivityForResult(newIntent, REQUEST_SELECT_DEVICE);
+                    } else {
+                        //Disconnect button pressed
+                        if (mDevice!=null)
+                        {
+                            mService.disconnect();
+
+                        }
+                    }
+                }
+            }
+        });
 
 
         Button start_alarm = (Button) findViewById(R.id.start_alarm);

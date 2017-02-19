@@ -20,6 +20,9 @@ import android.util.Log;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.Random;
 
 public class RingtonePlayingService extends Service {
@@ -39,6 +42,26 @@ public class RingtonePlayingService extends Service {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+
+        //Bluetooth code start
+        String currentDateTimeString = DateFormat.getTimeInstance().format(new Date());
+
+        String message = "on";
+        byte[] value;
+        try {
+            //send data to service
+            value = message.getBytes("UTF-8");
+            MainActivity.mService.writeRXCharacteristic(value);
+            //Update the log with time stamp
+            String currentDateTimSeString = DateFormat.getTimeInstance().format(new Date());
+            MainActivity.listAdapter.add("["+currentDateTimeString+"] TX: "+ message);
+            MainActivity.messageListView.smoothScrollToPosition(MainActivity.listAdapter.getCount() - 1);
+            MainActivity.edtMessage.setText("");
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        //Bluetooth code end
 
 
         final NotificationManager mNM = (NotificationManager)
