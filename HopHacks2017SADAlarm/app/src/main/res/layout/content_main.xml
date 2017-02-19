@@ -25,10 +25,10 @@
     <Button
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:text="Unset alarm"
         android:id="@+id/stop_alarm"
         android:onClick="cancelTimer"
         android:layout_alignTop="@+id/start_alarm"
+        android:background="@drawable/aofs"
         android:layout_toEndOf="@+id/alarmText" />
 
     <Button
@@ -55,6 +55,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="bluetooth"
+        android:background="@drawable/bllue"
         android:id="@+id/pair"
         android:onClick="cancelTimer"
         android:layout_marginEnd="10dp"
