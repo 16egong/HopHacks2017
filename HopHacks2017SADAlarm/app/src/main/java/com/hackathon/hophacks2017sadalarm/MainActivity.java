@@ -451,4 +451,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
+    public ArrayAdapter<String> getListAdapter()
+    {
+        return listAdapter;
+    }
+
 }
