@@ -72,7 +72,7 @@ public class RingtonePlayingService extends Service {
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent1, 0);
 
         Notification mNotify = new Notification.Builder(this)
-                .setContentTitle("Time to Wake Up" + "!")
+                .setContentTitle("Richard Dawkins is talking" + "!")
                 .setContentText("Click me!")
                 .setSmallIcon(R.drawable.ic_action_call)
                 .setContentIntent(pIntent)
@@ -81,6 +81,7 @@ public class RingtonePlayingService extends Service {
 
         String state = intent.getExtras().getString("extra");
 
+        Log.e("what is going on here  ", state);
 
         assert state != null;
         switch (state) {
