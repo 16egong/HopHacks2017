@@ -134,33 +134,48 @@ void loop() {
   // put your main code here, to run repeatedly:
 
   // Check for user input
-  char inputs[BUFSIZE + 1];
+  // char inputs[BUFSIZE + 1];
 
-  if ( getUserInput(inputs, BUFSIZE) )
-  {
+  //if ( getUserInput(inputs, BUFSIZE) )
+  //  (getUserInput())
+  // {
     // Send characters to Bluefruit
-    Serial.print("[Send] ");
-    Serial.println(inputs);
+    // Serial.print("[Send] ");
+    // Serial.println(inputs);
 
-    ble.print("AT+BLEUARTTX=");
-    ble.println(inputs);
+    //ble.print("AT+BLEUARTTX=");
+    //ble.println(inputs);
 
     // check response stastus
-    if (! ble.waitForOK() ) {
-      Serial.println(F("Failed to send?"));
-    }
-  }
+    //if (! ble.waitForOK() ) {
+    //  Serial.println(F("Failed to send?"));
+    //}
+  // }
 
   // Check for incoming characters from Bluefruit
-  ble.println("AT+BLEUARTRX");
-  ble.readline();
-  if (strcmp(ble.buffer, "OK") == 0) {
-    // no data
-    return;
-  }
+  //ble.println("AT+BLEUARTRX");
+  // ble.readline();
+//  if (strcmp(ble.buffer, "OK") == 0) {
+//    // no data
+//    return;
+//  }
   // Some data was found, its in the buffer
-  Serial.print(F("[Recv] ")); Serial.println(ble.buffer);
-  ble.waitForOK();
+  
+  while (bluefruitSS.available()) {
+    // get the new byte:
+    char inChar = (char)bluefruitSS.read();
+    // add it to the inputString:
+    inputString += inChar;
+    // if the incoming character is a newline, set a flag
+    // so the main loop can do something about it:
+    if (inChar == '\n') 
+    {
+      stringComplete = true;
+    }
+  }
+  Serial.print(F("[Recv] ")); 
+  Serial.println(inputString);
+  // ble.waitForOK();
 
   //if (stringComplete) {
 
@@ -243,7 +258,8 @@ void stringMatches() {
 
 }
 
-bool getUserInput(char buffer[], uint8_t maxSize)
+//bool getUserInput(char buffer[], uint8_t maxSize)
+bool getUserInput()
 {
 //  // timeout in 100 milliseconds
 //  TimeoutTimer timeout(100);
@@ -263,20 +279,19 @@ bool getUserInput(char buffer[], uint8_t maxSize)
 //    delay(2);
 //  } while ( (count < maxSize) && (Serial.available()) );
   // timeout in 100 milliseconds
-  TimeoutTimer timeout(100);
 
-  memset(buffer, 0, maxSize);
-  inputString = ble.readline();
-  
-  while ( (strcmp(ble.buffer, "OK") == 0) && !timeout.expired() ) {
-    delay(1);
-  }
-
-  if ( timeout.expired() ) return false;
-
+  if (ble.available() > 0)
+  {
+    ble.readline();
+    inputString = ble.buffer;
   Serial.println(F("getUserInput: The value of inputString is"));
   Serial.println(inputString);
   return true;
+  }
+
+  Serial.println(F("getUserInput: no input read into inputString"));
+  Serial.println(inputString);
+  return false;
   
 }
 
